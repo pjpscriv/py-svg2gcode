@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [[ ! $# -eq 1 ]]
+  then
+  echo -e "\e[95mBruh\e[0m you needa have just one argument. C'mon now."
+else
+  file=$1
+  if [[ $file =~ .\.svg$ ]]
+    then
+    filename=${file%.svg}
+    echo -e "Input: \"$file\""
+    echo -en "\e[96m"
+    cat $file
+    echo "\e[0m"    
+    
+    cat $file |  python svg2gcode.py > $filename.gcode
+    #things=(cat out.gcode)
+    echo -e "\e[32mDone.\e[0m\nResult:\e[33m"
+    cat $filename.gcode
+    echo -ne "\e[0m"
+  else 
+    echo -e "\e[31mNa.\e[0m That's not an svg file!"
+  fi
+fi
