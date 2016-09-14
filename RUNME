@@ -4,29 +4,34 @@ if [[ ! $# -eq 1 ]]
   then
   echo -e "\e[95mBruh\e[0m you needa have just one argument. C'mon now."
 else
-  file=$1
-  if [[ $file =~ .\.svg$ ]]
+  infile=$1
+  if [[ $infile =~ .\.svg$ ]]
     then
-    filename=${file%.svg}
-    echo -en "\e[4m"                  # Underline
-    echo -e "Input: \"$file\""
 
+    echo -en "\e[4m"                  # Underline
+    echo -e "Input: \"$infile\""
     echo -en "\e[24;96m"              # Cyan, no Underline
-    cat $file
+
+    cat $infile
 
     echo -en "\e[0m"                  # Reset Normal
-    cat $file | python svg2gcode.py > $filename.gcode
+
+    fname=${infile%.svg}
+    outfile=${fname//in\//out\/}.gcode
+    cat $infile | python svg2gcode.py > $outfile
     #things=(cat out.gcode)
 
     #echo -en "\e[32m"                 # Green
     #echo "Done."
+    
     echo ""
-
     echo -en "\e[0;4m"                  # White, Underlined
-    echo -e "Output: \"$filename.gcode\""
+    echo -e "Output: \"$outfile\""
 
     echo -en "\e[24;33m"              # Orange, no Underline
-    cat $filename.gcode
+
+    cat $outfile
+    
     echo -ne "\e[0m"                  # Reset to normal
   else 
     echo -e "\e[31mNa.\e[0m That's not an svg file!"
