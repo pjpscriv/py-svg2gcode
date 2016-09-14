@@ -23,7 +23,7 @@ def generate_gcode():
         print "Unable to get width and height for the svg"
         sys.exit(1)
     
-    print("test:", width, height)
+    #print "test:", width, height
 
     width = float(width)
     height = float(height)
@@ -36,17 +36,19 @@ def generate_gcode():
     #print(root)
 
     for elem in root.iter():
-        print(elem)
+        #print(elem)
         try:
-            _, tag_suffix = elem.tag.split('}')
-        except ValueError e:
-            print("EEEERRRORRR!!")
+            tag_suffix = elem.tag
+            # print tag_suffix
+            # _, tag_suffix = elem.tag.split('}')
+        except:
+            print "Error reading tag value:", tag_suffix
             continue
         
-        print(tag_suffix)
+        #print(tag_suffix)
 
         if tag_suffix in svg_shapes:
-            print(tagsuffix, "is in the thing")
+            #print(tag_suffix, "is in the thing")
             shape_class = getattr(shapes_pkg, tag_suffix)
             shape_obj = shape_class(elem)
             d = shape_obj.d_path()
