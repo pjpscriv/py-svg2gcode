@@ -11,10 +11,10 @@ shape_preamble = "G4 P200"
 shape_postamble = "G4 P200"
 
 """Print bed width in mm"""
-bed_max_x = 200
+bed_max_x = 400
 
 """Print bed height in mm"""
-bed_max_y = 200
+bed_max_y = 400
 
 """ 
 Used to control the smoothness/sharpness of the curves.
