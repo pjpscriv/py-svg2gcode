@@ -6,31 +6,40 @@ if [[ ! $# -eq 1 ]]
 else
   infile=$1
   if [[ $infile =~ .\.svg$ ]]
-    then
-
+    then                              # Output Styles listed here:
+    
+    # 1 Print input file name
     echo -en "\e[4m"                  # Underline
     echo -e "Input: \"$infile\""
     echo -en "\e[24;96m"              # Cyan, no Underline
-
+    
+    # 2 Show input file
     cat $infile
 
     echo -en "\e[0m"                  # Reset Normal
-
+    
+    # 3 Convert to GCode
     fname=${infile%.svg}
     outfile=${fname//in\//out\/}.gcode
     cat $infile | python svg2gcode.py > $outfile
-    #things=(cat out.gcode)
+    outlen=$(cat $outfile | wc -l)
 
-    #echo -en "\e[32m"                 # Green
-    #echo "Done."
+    echo -e "\e[0;4m"                  # White, Underlined
     
-    echo ""
-    echo -en "\e[0;4m"                  # White, Underlined
-    echo -e "Output: \"$outfile\""
+    # 4 Print output file name
+    echo -e "Output: \"$outfile\" ($outlen lines)"
 
     echo -en "\e[24;33m"              # Orange, no Underline
 
-    cat $outfile
+    # 5 Print output file
+    if [[ $outlen -gt 15 ]] 
+      then
+      cat $outfile | head -n 10
+      echo ...
+      cat $outfile | tail -n 5
+    else
+      cat $outfile
+    fi
     
     echo -ne "\e[0m"                  # Reset to normal
   else 
