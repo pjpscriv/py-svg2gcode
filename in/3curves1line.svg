@@ -1,0 +1,7 @@
+<svg height="210" width="500">
+  <line x1="1" y1="1" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
+  <ellipse cx="200" cy="80" rx="100" ry="50" style="fill:yellow;stroke:purple;stroke-width:2" />
+  Sorry, your browser does not support inline SVG.
+  <circle cx="25" cy="50" r="20"/>
+  <circle cx="75" cy="50" r="20"/>
+</svg>
