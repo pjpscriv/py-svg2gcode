@@ -12,7 +12,7 @@ import cubicsuperpath
 import cspsubdiv
 from bezmisc import beziersplitatt
 
-
+# Parent Class
 class svgshape(object):
     
     def __init__(self, xml_node):
@@ -31,6 +31,7 @@ class svgshape(object):
     def __str__(self):
         return str(self.xml_node)        
 
+# PATH tag
 class path(svgshape):
      def __init__(self, xml_node):
         super(path, self).__init__(xml_node)
@@ -45,6 +46,7 @@ class path(svgshape):
      def d_path(self):
         return self.d     
 
+# RECT tag
 class rect(svgshape):
   
     def __init__(self, xml_node):
@@ -71,6 +73,7 @@ class rect(svgshape):
         a.append( [' Z', []] )
         return simplepath.formatPath(a)     
 
+# ELLIPSE tag
 class ellipse(svgshape):
 
     def __init__(self, xml_node):
@@ -96,6 +99,7 @@ class ellipse(svgshape):
             '0 1 0 %f,%f' % ( x1, self.cy )
         return p
 
+# CIRCLE tag
 class circle(ellipse):
     def __init__(self, xml_node):
         super(ellipse, self).__init__(xml_node)
@@ -110,6 +114,7 @@ class circle(ellipse):
             self.cx = self.cy = self.r = 0
             logging.error("Circle: Unable to get the attributes for %s", self.xml_node)
 
+# LINE tag
 class line(svgshape):
 
     def __init__(self, xml_node):
@@ -131,6 +136,7 @@ class line(svgshape):
         a.append( ['L ', [self.x2, self.y2]] )
         return simplepath.formatPath(a)
 
+# Poly-point Parent Class
 class polycommon(svgshape):
 
     def __init__(self, xml_node, polytype):
@@ -145,7 +151,7 @@ class polycommon(svgshape):
         else:
             logging.error("polycommon: Unable to get the attributes for %s", self.xml_node)
 
-
+# POLYGON tag
 class polygon(polycommon):
 
     def __init__(self, xml_node):
@@ -158,6 +164,7 @@ class polygon(polycommon):
         d += " Z"
         return d
 
+# POLYLINE tag
 class polyline(polycommon):
 
     def __init__(self, xml_node):
@@ -169,6 +176,7 @@ class polyline(polycommon):
             d += " L " + self.points[i]
         return d
 
+#
 def point_generator(path, mat, flatness):
 
         if len(simplepath.parsePath(path)) == 0:

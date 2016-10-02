@@ -16,11 +16,9 @@ bed_max_x = 400
 """Print bed height in mm"""
 bed_max_y = 400
 
-""" 
-Used to control the smoothness/sharpness of the curves.
-Smaller the value greater the sharpness. Make sure the
-value is greater than 0.1
-"""
+""" Used to control the smoothness/sharpness of the curves.
+    Smaller the value greater the sharpness. Make sure the
+    value is greater than 0.1"""
 smoothness = 0.2
 
 

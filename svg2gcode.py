@@ -3,12 +3,13 @@
 # External Imports
 import sys
 import xml.etree.ElementTree as ET
+
 # Local Imports
 import shapes as shapes_pkg
 from shapes import point_generator
 from config import *
 
-PRINTS = False
+PRINTS = True
 
 def generate_gcode():
     svg_shapes = set(['rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path'])
@@ -60,10 +61,19 @@ def generate_gcode():
             log("\tObject: "+str(shape_obj))
             log("\tAttrs : "+str(elem.items()))
             log("\tTransform: "+str(elem.get('transform')))
-            d = shape_obj.d_path()
 
+
+#################### HERE'S THE MEAT!!! ####################
+            # Gets the Object path info in one of 2 ways:
+            # 1. Reads the <tag>'s 'd' attribute.
+            # 2. Reads the SVG and generates the path itself.
+            d = shape_obj.d_path()
             log("\td: "+str(d))
 
+            # The *Transformation Matrix*
+            # Specifies something about how curves are approximated
+            # Non-essential - a default is used if the method below
+            #   returns None.
             m = shape_obj.transformation_matrix()
             log("\tm: "+str(m))
 
@@ -106,6 +116,4 @@ def test(filename):
 
 if __name__ == "__main__":
     generate_gcode()
-
-
 
