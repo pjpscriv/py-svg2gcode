@@ -33,6 +33,7 @@ class svgshape(object):
 
 # PATH tag
 class path(svgshape):
+
      def __init__(self, xml_node):
         super(path, self).__init__(xml_node)
 
@@ -101,6 +102,7 @@ class ellipse(svgshape):
 
 # CIRCLE tag
 class circle(ellipse):
+    
     def __init__(self, xml_node):
         super(ellipse, self).__init__(xml_node)
 
