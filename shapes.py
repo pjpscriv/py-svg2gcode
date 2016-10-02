@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
+# External Imports
 import logging
 import traceback
 import xml.etree.ElementTree as ET
+
+# Internal Imports
 import simplepath
 import simpletransform 
 import cubicsuperpath
@@ -26,7 +29,7 @@ class svgshape(object):
         return "<path d=\"" + self.d_path() + "\"/>"
 
     def __str__(self):
-        return self.xml_node        
+        return str(self.xml_node)        
 
 class path(svgshape):
      def __init__(self, xml_node):

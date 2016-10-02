@@ -1,2 +1,5 @@
 # Compiled Python Files
 *.pyc
+
+# Gcode outputs
+out/
