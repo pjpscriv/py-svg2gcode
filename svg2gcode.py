@@ -13,6 +13,8 @@ from config import *
 DEBUGGING = True
 SVG = set(['rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path'])
 
+## THIS IS A TEST
+
 
 def generate_gcode(filename):
 
