@@ -10,11 +10,12 @@ shape_preamble = "G4 P200"
 """G-code emitted after processing a SVG shape"""
 shape_postamble = "G4 P200"
 
+# A4 is 210mm x 297mm
 """Print bed width in mm"""
-bed_max_x = 400
+bed_max_x = 1000
 
 """Print bed height in mm"""
-bed_max_y = 400
+bed_max_y = 1000
 
 """ Used to control the smoothness/sharpness of the curves.
     Smaller the value greater the sharpness. Make sure the

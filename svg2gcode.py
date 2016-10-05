@@ -19,10 +19,10 @@ SVG = set(['rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path'])
 def generate_gcode(filename):
 
     # Define the Output
-    debug(filename)
+    debug_log(filename)
     outfile = filename.split(".svg")[0] + ".gcode"
     outfile = "out/" + outfile.split("in/")[-1]
-    debug(outfile)
+    debug_log(outfile)
 
     gcode = ""
 
@@ -56,7 +56,7 @@ def generate_gcode(filename):
     
     # Iterate through svg elements
     for elem in root.iter():
-        debug("--Found Elem: "+str(elem))
+        debug_log("--Found Elem: "+str(elem))
         try:
             tag_suffix = elem.tag.split("}")[-1]
         except:
@@ -66,16 +66,16 @@ def generate_gcode(filename):
         # Checks element is valid SVG shape
         if tag_suffix in SVG:
 
-            debug("  --Name: "+str(tag_suffix))
+            debug_log("  --Name: "+str(tag_suffix))
 
             # Get corresponding class object from 'shapes.py'
             shape_class = getattr(shapes_pkg, tag_suffix)
             shape_obj = shape_class(elem)
 
-            debug("\tClass : "+str(shape_class))
-            debug("\tObject: "+str(shape_obj))
-            debug("\tAttrs : "+str(elem.items()))
-            debug("\tTransform: "+str(elem.get('transform')))
+            debug_log("\tClass : "+str(shape_class))
+            debug_log("\tObject: "+str(shape_obj))
+            debug_log("\tAttrs : "+str(elem.items()))
+            debug_log("\tTransform: "+str(elem.get('transform')))
 
 
 #################### HERE'S THE MEAT!!! ####################
@@ -83,34 +83,37 @@ def generate_gcode(filename):
             # 1. Reads the <tag>'s 'd' attribute.
             # 2. Reads the SVG and generates the path itself.
             d = shape_obj.d_path()
-            debug("\td: "+str(d))
+            debug_log("\td: "+str(d))
 
             # The *Transformation Matrix*
             # Specifies something about how curves are approximated
             # Non-essential - a default is used if the method below
             #   returns None.
             m = shape_obj.transformation_matrix()
-            debug("\tm: "+str(m))
+            debug_log("\tm: "+str(m))
 
             if d:
-                debug("\td is GOOD!")
+                debug_log("\td is GOOD!")
 
                 gcode += shape_preamble + "\n"
                 points = point_generator(d, m, smoothness)
 
-                debug("\tPoints: "+str(points))
+                debug_log("\tPoints: "+str(points))
 
                 for x,y in points:
-                    debug("\tpt: "+str((x,y)))
+                    debug_log("\tpt: "+str((x,y)))
 
-                    if x > 0 and x < bed_max_x and y > 0 and y < bed_max_y:  
+                    if x >= 0 and x < bed_max_x and y >= 0 and y < bed_max_y:  
                         gcode += ("G1 X%0.1f Y%0.1f" % (scale_x*x, scale_y*y))
-                        gcode += "\n" 
+                        gcode += "\n"
+                        debug_log("\t    --Point printed")
+                    else:
+                      debug_log("\t    --Point not printed ("+str(bed_max_x)+","+str(bed_max_y)+")")
                 gcode += shape_postamble + "\n"
             else:
-              debug("\tNO PATH INSTRUCTIONS FOUND!!")
+              debug_log("\tNO PATH INSTRUCTIONS FOUND!!")
         else:
-          debug("  --No Name: "+tag_suffix)
+          debug_log("  --No Name: "+tag_suffix)
 
     gcode += postamble + "\n"
 
@@ -118,11 +121,11 @@ def generate_gcode(filename):
     ofile = open(outfile, 'w')
     ofile.write(gcode)
     ofile.close()
-    #debug("RESULT:\n"+gcode)
+    #debug_log("RESULT:\n"+gcode)
 
 
 
-def debug(message):
+def debug_log(message):
   if (DEBUGGING):
     print message
 

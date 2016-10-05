@@ -27,7 +27,7 @@ else
     # 3. Convert to GCode
     echo -e "\e[0;4m"                  # 4. White, Underlined
     buglen=$(python -c "import svg2gcode as s2g; s2g.generate_gcode(\"$infile\")" | wc -l)
-    echo "Debugging: ($buglen line)"
+    echo "Debugging: ($buglen lines"
     echo -en "\e[24;33m"               # 5. Orange, no Underline
     python -c "import svg2gcode as s2g; s2g.generate_gcode(\"$infile\")"
     
