@@ -41,14 +41,14 @@ else
 
     # 5. Print output file
     echo -en "\e[24;32m"               # 5. Green, no Underline
-    # if [[ $outlen -gt 15 ]] 
-    #   then
-    #   cat $outfile | head -n 10
-    #   echo ...
-    #   cat $outfile | tail -n 5
-    # else
-        cat $outfile
-    # fi
+    if [[ $outlen -gt 15 ]] 
+      then
+      cat $outfile | head -n 10
+      echo ...
+      cat $outfile | tail -n 5
+    else
+       cat $outfile
+    fi
     
     echo -ne "\e[0m"                   # Reset to normal
   else 

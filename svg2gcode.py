@@ -57,6 +57,7 @@ def generate_gcode(filename):
     # Iterate through svg elements
     for elem in root.iter():
         debug_log("--Found Elem: "+str(elem))
+        new_shape = True
         try:
             tag_suffix = elem.tag.split("}")[-1]
         except:
@@ -103,8 +104,12 @@ def generate_gcode(filename):
                 for x,y in points:
                     debug_log("\tpt: "+str((x,y)))
 
-                    if x >= 0 and x < bed_max_x and y >= 0 and y < bed_max_y:  
-                        gcode += ("G1 X%0.1f Y%0.1f" % (scale_x*x, scale_y*y))
+                    if x >= 0 and x < bed_max_x and y >= 0 and y < bed_max_y:
+                        if new_shape:
+                            gcode += ("G0 X%0.1f Y%0.1f" % (scale_x*x, scale_y*y))
+                            new_shape = False
+                        else:
+                            gcode += ("G1 X%0.1f Y%0.1f" % (scale_x*x, scale_y*y))
                         gcode += "\n"
                         debug_log("\t    --Point printed")
                     else:
