@@ -2,4 +2,4 @@
 *.pyc
 
 # Gcode outputs
-out/
+tests/gcode_output

@@ -18,10 +18,23 @@ SVG = set(['rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path'])
 
 def generate_gcode(filename):
 
+    if not filename.endswith('.svg'):
+      raise ValueError("Error: Input isn't an .svg file!")
+
     # Define the Output
+    # ASSUMING LINUX / OSX FOLDER NAMING
     debug_log(filename)
-    outfile = filename.split(".svg")[0] + ".gcode"
-    outfile = "out/" + outfile.split("in/")[-1]
+    file = filename.split('/')[-1]
+    dirlist = filename.split('/')[:-1]
+    dirlist.append("gcode_output")
+    outdir = ''
+    for folder in dirlist:
+      outdir += folder + '/'
+    if not os.path.exists(outdir):
+      os.makedirs(outdir)
+
+    outfile = outdir + file.split(".svg")[0] + '.gcode'
+    #outfile = "out/" + outfile.split("in/")[-1]
     debug_log(outfile)
 
     gcode = ""
@@ -123,7 +136,7 @@ def generate_gcode(filename):
     gcode += postamble + "\n"
 
     # Write the Result
-    ofile = open(outfile, 'w')
+    ofile = open(outfile, 'w+')
     ofile.write(gcode)
     ofile.close()
     #debug_log("RESULT:\n"+gcode)
