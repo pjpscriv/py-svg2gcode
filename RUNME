@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Display all of input+output files or
+# just 15 lines of each
 verbose=false
 
 if [[ ! $# -eq 1 ]]

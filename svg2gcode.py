@@ -18,12 +18,16 @@ SVG = set(['rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path'])
 
 def generate_gcode(filename):
 
+    # Check File Validity
+    if not os.path.isfile(filename):
+      raise ValueError("File \""+filename+"\" not found.")
+
     if not filename.endswith('.svg'):
-      raise ValueError("Error: Input isn't an .svg file!")
+      raise ValueError("File \""+filename+"\" is not an SVG file.")
 
     # Define the Output
     # ASSUMING LINUX / OSX FOLDER NAMING
-    debug_log(filename)
+    debug_log("Input File: "+filename)
     file = filename.split('/')[-1]
     dirlist = filename.split('/')[:-1]
     dirlist.append("gcode_output")
@@ -35,7 +39,7 @@ def generate_gcode(filename):
 
     outfile = outdir + file.split(".svg")[0] + '.gcode'
     #outfile = "out/" + outfile.split("in/")[-1]
-    debug_log(outfile)
+    debug_log("Output File: "+outfile)
 
     gcode = ""
 
@@ -115,7 +119,7 @@ def generate_gcode(filename):
                 debug_log("\tPoints: "+str(points))
 
                 for x,y in points:
-                    debug_log("\tpt: "+str((x,y)))
+                    debug_log("\t  pt: "+str((x,y)))
 
                     if x >= 0 and x < bed_max_x and y >= 0 and y < bed_max_y:
                         if new_shape:
@@ -158,9 +162,6 @@ def test(filename):
 
 if __name__ == "__main__":
   file = raw_input("Please supply a filename: ")
-  if os.path.isfile(file):
-    print file, "is a file"
-    generate_gcode(file)
-  else:
-    raise ValueError("File \""+file+"\" not found")
+  generate_gcode(file)
+    
 
