@@ -1,5 +1,6 @@
-for f in $(ls in)
+for f in $(ls tests)
   do 
-  echo $f
-  ./RUNME in/$f
+  echo 
+  read -p "Press Enter to test \""$f"\" ..."
+  ./RUNME tests/$f
 done
