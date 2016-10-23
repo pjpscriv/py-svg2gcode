@@ -1,6 +1,5 @@
 for f in $(ls tests)
-  do 
-  echo 
+  do
   read -p "Press Enter to test \""$f"\" ..."
   ./RUNME tests/$f
 done
