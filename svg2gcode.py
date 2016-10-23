@@ -13,9 +13,6 @@ from config import *
 DEBUGGING = True
 SVG = set(['rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path'])
 
-## THIS IS A TEST
-
-
 def generate_gcode(filename):
 
     # Check File Validity
@@ -96,7 +93,7 @@ def generate_gcode(filename):
             debug_log("\tTransform: "+str(elem.get('transform')))
 
 
-#################### HERE'S THE MEAT!!! ####################
+            ############ HERE'S THE MEAT!!! #############
             # Gets the Object path info in one of 2 ways:
             # 1. Reads the <tag>'s 'd' attribute.
             # 2. Reads the SVG and generates the path itself.
