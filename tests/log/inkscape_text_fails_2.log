@@ -1,0 +1,40 @@
+Input File: tests/inkscape_text_fails_2.svg
+Output File: tests/gcode_output/inkscape_text_fails_2.gcode
+Log File: tests/log/inkscape_text_fails_2.log
+
+wdth: 750
+hght: 750
+x%: 0.2
+y%: 0.2
+--Found Elem: <Element '{http://www.w3.org/2000/svg}svg' at 0x7f937e711f50>
+  --No Name: svg
+--Found Elem: <Element '{http://www.w3.org/2000/svg}defs' at 0x7f937e71d0d0>
+  --No Name: defs
+--Found Elem: <Element '{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}namedview' at 0x7f937e71d310>
+  --No Name: namedview
+--Found Elem: <Element '{http://www.w3.org/2000/svg}metadata' at 0x7f937e71d350>
+  --No Name: metadata
+--Found Elem: <Element '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF' at 0x7f937e71d390>
+  --No Name: RDF
+--Found Elem: <Element '{http://creativecommons.org/ns#}Work' at 0x7f937e71d3d0>
+  --No Name: Work
+--Found Elem: <Element '{http://purl.org/dc/elements/1.1/}format' at 0x7f937e71d410>
+  --No Name: format
+--Found Elem: <Element '{http://purl.org/dc/elements/1.1/}type' at 0x7f937e71d450>
+  --No Name: type
+--Found Elem: <Element '{http://purl.org/dc/elements/1.1/}title' at 0x7f937e71d490>
+  --No Name: title
+--Found Elem: <Element '{http://www.w3.org/2000/svg}g' at 0x7f937e71d4d0>
+  --No Name: g
+--Found Elem: <Element '{http://www.w3.org/2000/svg}text' at 0x7f937e71d550>
+  --No Name: text
+--Found Elem: <Element '{http://www.w3.org/2000/svg}tspan' at 0x7f937e71d590>
+  --No Name: tspan
+--Found Elem: <Element '{http://www.w3.org/2000/svg}tspan' at 0x7f937e71d5d0>
+  --No Name: tspan
+--Found Elem: <Element '{http://www.w3.org/2000/svg}tspan' at 0x7f937e71d610>
+  --No Name: tspan
+--Found Elem: <Element '{http://www.w3.org/2000/svg}tspan' at 0x7f937e71d650>
+  --No Name: tspan
+--Found Elem: <Element '{http://www.w3.org/2000/svg}tspan' at 0x7f937e71d690>
+  --No Name: tspan
