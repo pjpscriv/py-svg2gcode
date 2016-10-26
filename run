@@ -6,7 +6,7 @@ verbose=false
 
 if [[ ! $# -eq 1 ]]
   then
-  echo -e "\e[95mBruh\e[0m you needa have just one argument. C'mon now."
+  echo -e "\e[95mBruh\e[0m you needa have one argument. C'mon now. \nIt should probably to be an \e[93m.svg file\e[0m because then I can do some magic with it."
 else
   infile=$1
 
