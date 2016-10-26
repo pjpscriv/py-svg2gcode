@@ -3,3 +3,6 @@
 
 # Gcode outputs
 tests/gcode_output
+
+# Log Files
+tests/log
