@@ -6,7 +6,7 @@ import sys
 import xml.etree.ElementTree as ET
 
 # Local Imports
-sys.path.insert(0, './lib')
+sys.path.insert(0, './lib') # (Import from lib folder)
 import shapes as shapes_pkg
 from shapes import point_generator
 from config import *
