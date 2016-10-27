@@ -150,7 +150,7 @@ def generate_gcode(filename):
 
                     log += debug_log("\t  pt: "+str((x,y)))
 
-                    if x >= 0 and x < bed_max_x and y >= 0 and y < bed_max_y:
+                    if x >= 0 and x <= bed_max_x and y >= 0 and y <= bed_max_y:
                         if new_shape:
                             gcode += ("G0 X%0.1f Y%0.1f\n" % (x, y))
                             gcode += "M03\n"
