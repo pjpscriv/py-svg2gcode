@@ -1,5 +1,5 @@
 # Python SVG to G-Code Converter
-A fast svg to gcode compiler forked from github user [vishpat](https://github.com/vishpat)'s [svg2gcode repository](https://github.com/vishpat/svg2gcode).
+A fast svg to gcode compiler forked from [vishpat/svg2gcode](https://github.com/vishpat/svg2gcode).
 
 This library takes an svg file `location/my_file.svg` and outputs the gcode conversion to a folder in the same directory `location/gcode_output/my_file.gcode`.
 
@@ -8,7 +8,7 @@ The file `config.py` contains the configurations for the conversion (printer bed
 ## Installation
 Simply clone this repo.
 ```
-git clone https://github.com/JustaBitDope/py-svg2gcode.git
+git clone https://github.com/pjpscriv/py-svg2gcode.git
 ```
 
 ## Usage
