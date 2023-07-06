@@ -6,3 +6,5 @@ tests/gcode_output
 
 # Log Files
 tests/log
+/venv/
+.DS_Store
